@@ -15,14 +15,12 @@ procedure Examples is
       Screen (Y) (X) := '#';
    end Draw_Pixel;
 
-   procedure Render_Glyph is new SDF_Fonts.Roboto_Mono_20.Render_Glyph
+   procedure Render_String is new SDF_Fonts.Roboto_Mono_20.Render_String
      (Positive, Draw_Pixel);
+
    X : Positive := 5;
 begin
-   Render_Glyph (X => X, Y => 5, Scale => 22, Index => 32);
-   Render_Glyph (X => X, Y => 5, Scale => 22, Index => 67);
-   Render_Glyph (X => X, Y => 5, Scale => 22, Index => 64);
-
+   Render_String (X => X, Y => 5, Scale => 24, Text => "Ada");
    for Line of reverse Screen loop
       Ada.Text_IO.Put_Line (Line);
    end loop;

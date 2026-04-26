@@ -5,6 +5,7 @@
 ----------------------------------------------------------------
 
 with SDF_Fonts.Render_Glyph;
+with SDF_Fonts.Render_String;
 
 package body SDF_Fonts.Roboto_Mono_20 is
    pragma Style_Checks (Off);
@@ -565,5 +566,19 @@ Map : constant Pixel_Map :=
       Internal (X, Y, Scale, Index);
    end Render_Glyph;
 
+   procedure Render_String
+     (X     : in out Pixel_Coordinate;
+      Y     : Pixel_Coordinate;
+      Scale : Font_Scale;
+      Text  : String)
+   is
+      procedure Internal_Render_Glyph is new Render_Glyph
+        (Pixel_Coordinate, Draw_Pixel);
+
+      procedure Internal is new SDF_Fonts.Render_String
+        (Pixel_Coordinate, Get_Glyph_Index, Internal_Render_Glyph);
+   begin
+      Internal (X, Y, Scale, Text);
+   end Render_String;
 
 end SDF_Fonts.Roboto_Mono_20;

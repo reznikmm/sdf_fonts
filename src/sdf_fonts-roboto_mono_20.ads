@@ -12,6 +12,10 @@ package SDF_Fonts.Roboto_Mono_20 is
    function Get_Atlas_Pixel (X, Y : Atlas_Coordinate) return Distance
      with Inline;
 
+   function Get_Glyph_Index (Value : Character) return Glyph_Index is
+     (if Value in '!' .. '~' then Character'Pos (Value) - Character'Pos ('!')
+      else 94);
+
    generic
       type Pixel_Coordinate is (<>);
       --  Type for pixel coordinates (any discrete type)
@@ -23,5 +27,19 @@ package SDF_Fonts.Roboto_Mono_20 is
       Y     : Pixel_Coordinate;
       Scale : Font_Scale;
       Index : Glyph_Index);
+   --  Renders a single glyph at the given position and scale.
+
+   generic
+      type Pixel_Coordinate is (<>);
+      --  Type for pixel coordinates (any discrete type)
+
+      with procedure Draw_Pixel (X, Y : Pixel_Coordinate);
+      --  Drawing routine for a single pixel
+   procedure Render_String
+     (X     : in out Pixel_Coordinate;
+      Y     : Pixel_Coordinate;
+      Scale : Font_Scale;
+      Text  : String);
+   --  Renders a string at the given position and scale.
 
 end SDF_Fonts.Roboto_Mono_20;
