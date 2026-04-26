@@ -550,7 +550,7 @@ Map : constant Pixel_Map :=
    begin
       return
        (if J in Map'Range (1) and K in Map'Range (2)
-        then (Map (J, K) - 127) * Distance'Small else 0.0);
+        then (Map (J, K) - 127) * Distance'Small else Distance'First);
    end Get_Atlas_Pixel;
 
    procedure Render_Glyph
