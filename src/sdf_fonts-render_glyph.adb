@@ -87,8 +87,11 @@ begin
             Rest_X : constant Atlas_Offset := Atlas_X - Trunc_X;
             Rest_Y : constant Atlas_Offset := Atlas_Y - Trunc_Y;
 
-            Shift_X : constant Atlas_Coordinate := Atlas_Coordinate (Trunc_X);
-            Shift_Y : constant Atlas_Coordinate := Atlas_Coordinate (Trunc_Y);
+            Shift_X : constant Atlas_Coordinate :=
+              (if Trunc_X < 0.0 then 0.0 else Atlas_Coordinate (Trunc_X));
+
+            Shift_Y : constant Atlas_Coordinate :=
+              (if Trunc_Y < 0.0 then 0.0 else Atlas_Coordinate (Trunc_Y));
 
             Pixel : constant array (1 .. 2, 1 .. 2) of Distance :=
              ((Get_Atlas_Pixel (Shift_X, Shift_Y),
