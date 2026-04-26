@@ -40,16 +40,17 @@ is
         (Value * Atlas_Offset (Glyph.Atlas.Right - Glyph.Atlas.Left))
         / (Glyph.Plane.Right - Glyph.Plane.Left));
 
-   Column : Pixel_Coordinate := X;
+   Start  : Pixel_Coordinate := X;
+   Column : Pixel_Coordinate;
    Row    : Pixel_Coordinate := Y;
 begin
    if Left >= 0.0 then
       for J in 1 .. Natural (Left) loop
-         Column := Pixel_Coordinate'Succ (Column);
+         Start := Pixel_Coordinate'Succ (Start);
       end loop;
    else
       for J in 1 .. Natural (-Left) loop
-         Column := Pixel_Coordinate'Pred (Column);
+         Start := Pixel_Coordinate'Pred (Start);
       end loop;
    end if;
 
@@ -64,6 +65,8 @@ begin
    end if;
 
    for Pixel_Y in Integer (Bottom) .. Integer (Top) loop
+      Column := Start;
+
       for Pixel_X in Integer (Left) .. Integer (Right) loop
          declare
             Plane_X : constant SDF_Fonts.Plane_Coordinate :=
@@ -113,7 +116,6 @@ begin
       end loop;
 
       Row := Pixel_Coordinate'Succ (Row);
-      Column := X;
    end loop;
 
    for J in 1 .. Natural (Advance) loop
