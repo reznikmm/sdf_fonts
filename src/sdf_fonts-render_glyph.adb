@@ -25,6 +25,13 @@ is
    function Ceiling (Value : Pixel_Offset) return Pixel_Offset is
      (Pixel_Offset (Integer (Value + 0.5 - Pixel_Offset'Small)));
 
+   function Sample
+     (Glyph : SDF_Fonts.Glyph; X, Y : Atlas_Coordinate) return Distance is
+       (if X + 0.5 in Glyph.Atlas.Left .. Glyph.Atlas.Right
+          and Y + 0.5 in Glyph.Atlas.Bottom .. Glyph.Atlas.Top
+        then Get_Atlas_Pixel (X, Y)
+        else Distance'First);
+
    Glyph : constant SDF_Fonts.Glyph := Get_Glyph (Index);
    Unit  : constant Int := Int (Scale);
 
@@ -94,10 +101,10 @@ begin
               (if Trunc_Y < 0.0 then 0.0 else Atlas_Coordinate (Trunc_Y));
 
             Pixel : constant array (1 .. 2, 1 .. 2) of Distance :=
-             ((Get_Atlas_Pixel (Shift_X, Shift_Y),
-               Get_Atlas_Pixel (Shift_X + 1.0, Shift_Y)),
-              (Get_Atlas_Pixel (Shift_X, Shift_Y + 1.0),
-               Get_Atlas_Pixel (Shift_X + 1.0, Shift_Y + 1.0)));
+             ((Sample (Glyph, Shift_X, Shift_Y),
+               Sample (Glyph, Shift_X + 1.0, Shift_Y)),
+              (Sample (Glyph, Shift_X, Shift_Y + 1.0),
+               Sample (Glyph, Shift_X + 1.0, Shift_Y + 1.0)));
 
             Weight : constant array (1 .. 2, 1 .. 2) of Atlas_Offset :=
               ((1 => (1.0 - Rest_X) * (1.0 - Rest_Y),
