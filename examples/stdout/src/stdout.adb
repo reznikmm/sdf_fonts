@@ -8,7 +8,7 @@ with Ada.Text_IO;
 with SDF_Fonts;
 with SDF_Fonts.Roboto_Mono_20;
 
-procedure Examples is
+procedure Stdout is
    Screen : array (1 .. 30) of String (1 .. 80) :=
      (others => (others => ' '));
 
@@ -38,4 +38,4 @@ begin
    for Line of reverse Screen loop
       Ada.Text_IO.Put_Line (Line);
    end loop;
-end Examples;
+end Stdout;

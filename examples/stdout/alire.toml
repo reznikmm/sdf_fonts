@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-name = "examples"
-description = ""
+name = "stdout"
+description = "Draw on stdout"
 version = "0.1.0-dev"
 
 authors = ["Max Reznik"]
@@ -13,7 +13,7 @@ licenses = "Apache-2.0 WITH LLVM-exception"
 website = ""
 tags = []
 
-executables = ["examples"]
+executables = ["stdout"]
 
 [build-switches]
 development.optimization = ["-O0"]
@@ -25,4 +25,4 @@ sdf_fonts = "*"
 "sdf_fonts" = "development"
 
 [[pins]]
-sdf_fonts = { path='..' }
+sdf_fonts = { path='../..' }

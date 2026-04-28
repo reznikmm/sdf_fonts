@@ -15,7 +15,7 @@ jobs:
       with:
         toolchain: 'gnat_native gprbuild'
     - name: Build project and demos
-      run: alr -C examples run
+      run: alr -C examples/stdout run
     - name: Dump log
       if: ${{ failure() }}
       run: cat alire/alr_test_local.log

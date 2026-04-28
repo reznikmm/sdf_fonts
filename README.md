@@ -26,7 +26,7 @@ runtime dependencies.
   - `sdf_fonts.ads` — Core types (`Glyph`, `Plane_Bounds`, `Atlas_Bounds`, …)
   - `sdf_fonts-render_glyph.ads/adb` — Generic glyph renderer
   - `sdf_fonts-roboto_mono_20.ads/adb` — Bundled Roboto Mono font at size 20
-- `examples/` — Example application (ASCII art renderer)
+- `examples/` — Examples applications (ASCII art renderer)
 - `scripts/json_to_ada.sh` — Converts `msdf-atlas-gen` JSON output to Ada
 - `alire.toml` — Alire crate manifest
 
@@ -73,9 +73,9 @@ string left-to-right by calling `Render_Glyph` in sequence.  `Y` is the
 ### 2. Build and run the example
 
 ```shell
-cd examples
-alr -C examples run
-./bin/examples
+cd examples/stdout
+alr run
+./bin/stdout Ada 24
 ```
 
 Output:

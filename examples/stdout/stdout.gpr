@@ -3,17 +3,17 @@
 --  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 ----------------------------------------------------------------
 
-with "config/examples_config.gpr";
-project Examples is
+with "config/stdout_config.gpr";
+project Stdout is
 
    for Source_Dirs use ("src/", "config/");
-   for Object_Dir use "obj/" & Examples_Config.Build_Profile;
+   for Object_Dir use "obj/" & Stdout_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
-   for Main use ("examples.adb");
+   for Main use ("stdout.adb");
 
    package Compiler is
-      for Default_Switches ("Ada") use Examples_Config.Ada_Compiler_Switches;
+      for Default_Switches ("Ada") use Stdout_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Binder is
@@ -24,4 +24,4 @@ project Examples is
       for Artifacts (".") use ("share");
    end Install;
 
-end Examples;
+end Stdout;
