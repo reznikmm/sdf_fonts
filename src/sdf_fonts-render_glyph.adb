@@ -51,7 +51,14 @@ is
    Column : Pixel_Coordinate;
    Row    : Pixel_Coordinate := Y;
 begin
-   if Left >= 0.0 then
+   for J in 1 .. Natural (Advance) loop
+      X := Pixel_Coordinate'Succ (X);
+   end loop;
+
+   if Glyph.Plane.Right = Glyph.Plane.Left then
+      --  On space just return
+      return;
+   elsif Left >= 0.0 then
       for J in 1 .. Natural (Left) loop
          Start := Pixel_Coordinate'Succ (Start);
       end loop;
@@ -126,9 +133,5 @@ begin
       end loop;
 
       Row := Pixel_Coordinate'Succ (Row);
-   end loop;
-
-   for J in 1 .. Natural (Advance) loop
-      X := Pixel_Coordinate'Succ (X);
    end loop;
 end SDF_Fonts.Render_Glyph;
