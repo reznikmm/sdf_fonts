@@ -26,7 +26,7 @@ runtime dependencies.
   - `sdf_fonts.ads` — Core types (`Glyph`, `Plane_Bounds`, `Atlas_Bounds`, …)
   - `sdf_fonts-render_glyph.ads/adb` — Generic glyph renderer
   - `sdf_fonts-roboto_mono_20.ads/adb` — Bundled Roboto Mono font at size 20
-- `examples/` — Examples applications (ASCII art renderer)
+- `examples/` — Examples applications (ASCII art renderer, STM32 F4VE embedded)
 - `scripts/json_to_ada.sh` — Converts `msdf-atlas-gen` JSON output to Ada
 - `alire.toml` — Alire crate manifest
 
